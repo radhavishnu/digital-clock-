@@ -1,0 +1,14 @@
+
+CHIP DFfmy{
+    IN D,clk;
+    OUT Q,Qb;
+
+    PARTS:
+// Put your code here:
+Nand(a=D,b=b1,out=a,out=a1,out=a2);
+Nand3(a=a1,b=clk,c=c3,out=b,out=b1,out=b2);
+Nand(a=d1,b=clk,out=c,out=c1,out=c2,out=c3);
+Nand(a=a2,b=c1,out=d,out=d1);
+Nand(a=c2,b=qb,out=Q,out=q);
+Nand(a=b2,b=q,out=Qb,out=qb);
+}

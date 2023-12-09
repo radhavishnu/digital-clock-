@@ -1,0 +1,53 @@
+CHIP SevenSegmentDecoder{
+    IN A,B,C,D;
+    OUT a,b,c,d,e,f,g;
+
+    PARTS:
+    // Put your code here:
+
+   Not(in=A,out=notA);
+   Not(in=B,out=notB);
+   Not(in=C,out=notC); 
+   Not(in=D,out=notD);
+
+   And(a=C,b=A,out=aand1);
+   And(a=notC,b=notA,out=aand2);
+   And(a=true,b=D,out=aand3);
+   And(a=true,b=B,out=aand4);
+   Or(a=aand1,b=aand2,out=aor1);
+   Or3(a=aand3,b=aand4,c=aor1,out=a);
+   
+   And(a=B,b=A,out=band1);
+   And(a=notB,b=notA,out=band2);
+   Or3(a=band1,b=band2,c=notC,out=b);
+
+   Or3(a=C,b=notB,c=A,out=c);
+
+   And(a=true,b=D,out=dand1);
+   And(a=notC,b=notA,out=dand2);
+   And(a=B,b=notA,out=dand3);
+   And(a=notC,b=B,out=dand4);
+   And3(a=C,b=notB,c=A,out=dand5);
+   Or3(a=dand1,b=dand2,c=dand3,out=dor1);
+   Or(a=dand4,b=dand5,out=dor2);
+   Or(a=dor1,b=dor2,out=d);
+
+   And(a=B,b=notA,out=eand1);
+   And(a=notC,b=notA,out=eand2);
+   Or(a=eand1,b=eand2,out=e);
+
+   And(a=notB,b=notA,out=fand1);
+   And(a=C,b=notA,out=fand2);
+   And(a=C,b=notB,out=fand3);
+   And(a=true,b=D,out=fand4);
+   Or3(a=fand1,b=fand2,c=fand3,out=for1);
+   Or(a=for1,b=fand4,out=f);
+
+   And(a=B,b=notA,out=gand1);
+   And(a=C,b=notB,out=gand2);
+   And(a=true,b=D,out=gand3);
+   And(a=notC,b=B,out=gand4);
+   Or3(a=gand1,b=gand2,c=gand3,out=gor1);
+   Or(a=gor1,b=gand4,out=g);
+
+}
